@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "1017654629103",
+    "firebase_url": "https://myschoolbus-7386f.firebaseio.com",
+    "project_id": "myschoolbus-7386f",
+    "storage_bucket": "myschoolbus-7386f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1017654629103:android:f9aa251e47c4ff3e",
+        "android_client_info": {
+          "package_name": "com.example.ardent.myschoolbus"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1017654629103-3o5n016iptsenofjrq63vt83dlaec5tl.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.ardent.myschoolbus",
+            "certificate_hash": "d516b9827a981ce2343b83bf7cc03ec0b415a590"
+          }
+        },
+        {
+          "client_id": "1017654629103-gscdjmfe5n1h7ki0ktrenb4vs61tkcla.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCSyPDm34pLTtzPro4SVgaNBgx1KzWt568"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1017654629103-gscdjmfe5n1h7ki0ktrenb4vs61tkcla.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
