@@ -96,19 +96,22 @@ public class Register extends AppCompatActivity implements View.OnClickListener{
         progressDialog.setMessage("Registering ... ");
         progressDialog.show();
 
-        String id = databaseReference.push().getKey();
-        UserData userData = new UserData(name,contact,email,password);
-        databaseReference.child(id).setValue(userData);
+
         firebaseAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 progressDialog.dismiss();
                 if(task.isSuccessful()){
-
                     Toast.makeText(Register.this,"Registered Successfully", Toast.LENGTH_SHORT).show();
-
+                    String id = databaseReference.push().getKey();
+                    String password = editTextPassword.getText().toString().trim();
+                    String name = editTextName.getText().toString().trim();
+                    String contact = editTextContact.getText().toString().trim();
+                    String email = editTextEmail.getText().toString().trim();
+                    UserData userData = new UserData(name,contact,email,password);
+                    databaseReference.child(id).setValue(userData);
                     finish();
-                    startActivity(new Intent(getApplicationContext(),Home.class));
+                    startActivity(new Intent(getApplicationContext(),RegisterChild.class));
                 }
                 else{
                     Toast.makeText(Register.this,"Try Again...", Toast.LENGTH_SHORT).show();
@@ -117,15 +120,6 @@ public class Register extends AppCompatActivity implements View.OnClickListener{
                 }
             }
         });
-
-        /*if(flag == true){
-            UserData userData = new UserData(name,contact,email,password);
-            FirebaseUser user = firebaseAuth.getCurrentUser();
-            databaseReference.child(user.getUid()).setValue(userData);
-            finish();
-            startActivity(new Intent(getApplicationContext(),Home.class));
-        }*/
-
     }
 
 
@@ -134,8 +128,6 @@ public class Register extends AppCompatActivity implements View.OnClickListener{
         if(v == buttonRegister){
             //yaha login kar ke andar jayega
             registerUser();
-
-
         }
     }
 }

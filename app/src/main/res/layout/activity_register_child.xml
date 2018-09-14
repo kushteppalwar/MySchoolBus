@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Register"
-    tools:layout_editor_absoluteY="25dp">
+    tools:context=".RegisterChild">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -15,52 +14,36 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/textViewUserLogin"
+            android:id="@+id/textViewRegChild"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Register"
+            android:text="Student Registeration"
+            android:layout_marginTop="16dp"
             android:textAlignment="center"
             android:textAppearance="?android:attr/textAppearanceLarge" />
 
         <EditText
-            android:id="@+id/editTextParentName"
+            android:id="@+id/editTextRegChildName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
-            android:hint="Parent's name"
+            android:hint="Student's name"
             android:inputType="text" />
 
         <EditText
-            android:id="@+id/editTextContactNumber"
+            android:id="@+id/editTextRegChildId"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
-            android:hint="Contact No."
-            android:inputType="number" />
+            android:hint="Id No." />
 
-
-        <EditText
-            android:id="@+id/editTextEmailReg"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="16dp"
-            android:hint="Email Id"
-            android:inputType="textEmailAddress" />
-
-        <EditText
-            android:id="@+id/editTextPasswordReg"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="16dp"
-            android:hint="Password"
-            android:inputType="textPassword" />
 
         <Button
-            android:id="@+id/buttonRegister"
+            android:id="@+id/buttonRegChildSave"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
-            android:text="Sign Up" />
+            android:text="Save" />
 
     </LinearLayout>
 
