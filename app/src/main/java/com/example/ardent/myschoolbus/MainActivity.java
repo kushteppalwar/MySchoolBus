@@ -78,7 +78,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 if(task.isSuccessful()){
                     Toast.makeText(MainActivity.this,"Logged In", Toast.LENGTH_SHORT).show();
                     finish();
-                    startActivity(new Intent(getApplicationContext(),Home.class));
+                    startActivity(new Intent(getApplicationContext(),Profile.class));
                 }
                 else{
                     Toast.makeText(MainActivity.this,"Invalid Credentials!", Toast.LENGTH_SHORT).show();

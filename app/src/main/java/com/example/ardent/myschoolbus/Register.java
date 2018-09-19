@@ -37,6 +37,9 @@ public class Register extends AppCompatActivity implements View.OnClickListener{
 
     private FirebaseAuth firebaseAuth ;
 
+    //k
+    private DatabaseReference databaseReference;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,6 +49,10 @@ public class Register extends AppCompatActivity implements View.OnClickListener{
         firebaseAuth = FirebaseAuth.getInstance();
 
         //databaseReference = FirebaseDatabase.getInstance().getReference("Details");
+
+        //k
+        databaseReference = FirebaseDatabase.getInstance().getReference();
+
 
         buttonRegister = (Button) findViewById(R.id.buttonRegister);
 
@@ -98,12 +105,12 @@ public class Register extends AppCompatActivity implements View.OnClickListener{
         progressDialog.show();
 
 
-        firebaseAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+        Task<AuthResult> authResultTask = firebaseAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 progressDialog.dismiss();
-                if(task.isSuccessful()){
-                    Toast.makeText(Register.this,"Registered Successfully", Toast.LENGTH_SHORT).show();
+                if (task.isSuccessful()) {
+                    Toast.makeText(Register.this, "Registered Successfully", Toast.LENGTH_SHORT).show();
                     //String id = databaseReference.push().getKey();
                     String password = editTextPassword.getText().toString().trim();
                     String name = editTextName.getText().toString().trim();
@@ -112,7 +119,7 @@ public class Register extends AppCompatActivity implements View.OnClickListener{
 
 
 
-
+                    /*
 
                     //get firebase user
                     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
@@ -131,9 +138,20 @@ public class Register extends AppCompatActivity implements View.OnClickListener{
                     //databaseReference.child(id).setValue(userData);
                     finish();
                     startActivity(new Intent(getApplicationContext(),Profile.class));
-                }
-                else{
-                    Toast.makeText(Register.this,"Try Again...", Toast.LENGTH_SHORT).show();
+
+                    */
+
+
+                    //k
+                    databaseReference = FirebaseDatabase.getInstance().getReference();
+                    UserData userData = new UserData(name, contact, email, password);
+                    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                    databaseReference.child("Details").child(user.getUid()).setValue(userData);
+                    finish();
+                    startActivity(new Intent(getApplicationContext(),RegisterChild.class));
+
+                } else {
+                    Toast.makeText(Register.this, "Try Again...", Toast.LENGTH_SHORT).show();
                     /*finish();
                     startActivity(new Intent(getApplicationContext(),Register.class));*/
                 }

@@ -15,6 +15,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -40,8 +41,9 @@ public class RegisterChild extends AppCompatActivity implements View.OnClickList
 
         progressDialog = new ProgressDialog(this);
         firebaseAuth = FirebaseAuth.getInstance();
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
-        databaseReference = FirebaseDatabase.getInstance().getReference("Student Details");
+        databaseReference = FirebaseDatabase.getInstance().getReference("Details").child(user.getUid());
 
         editTextRegChildId = (EditText) findViewById(R.id.editTextRegChildId);
         editTextRegChildName = (EditText) findViewById(R.id.editTextRegChildName);
@@ -74,6 +76,7 @@ public class RegisterChild extends AppCompatActivity implements View.OnClickList
         String iid = databaseReference.push().getKey();
         StudentData studentData = new StudentData(name,id);
         databaseReference.child(iid).setValue(studentData);
+
         Toast.makeText(RegisterChild.this,"Registered Successfully", Toast.LENGTH_SHORT).show();
         finish();
         startActivity(new Intent(getApplicationContext(),Profile.class));

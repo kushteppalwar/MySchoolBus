@@ -4,25 +4,15 @@ package com.example.ardent.myschoolbus;
 
 public class UserData {
 
-    String name;
-    String contact;
-    String email;
-    String password;
+    public String name;
+    public String contact;
+    public String email;
+    public String password;
 
     public UserData(){
-   /*     this.name = "";
-        this.contact = "";
-        this.email = "";
-        this.password = "";
-    */}
-
-    public UserData(UserData usr){
-
-        this.name = usr.name;
-        this.email = usr.email;
-        this.contact = usr.contact;
-        this.password = usr.password;
+        // Default constructor required for calls to DataSnapshot.getValue(User.class)
     }
+
 
 
     public UserData(String name, String contact, String email, String password) {
