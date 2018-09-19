@@ -10,8 +10,20 @@ public class UserData {
     String password;
 
     public UserData(){
+   /*     this.name = "";
+        this.contact = "";
+        this.email = "";
+        this.password = "";
+    */}
 
+    public UserData(UserData usr){
+
+        this.name = usr.name;
+        this.email = usr.email;
+        this.contact = usr.contact;
+        this.password = usr.password;
     }
+
 
     public UserData(String name, String contact, String email, String password) {
         this.name = name;
@@ -34,5 +46,21 @@ public class UserData {
 
     public String getPassword() {
         return password;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setContact(String contact) {
+        this.contact = contact;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.telecom.Call;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
@@ -28,7 +29,7 @@ public class Register extends AppCompatActivity implements View.OnClickListener{
     private EditText editTextName;
     private EditText editTextContact;
 
-    private DatabaseReference databaseReference;
+    //private DatabaseReference databaseReference;
 
     private boolean flag = false;
 
@@ -44,7 +45,7 @@ public class Register extends AppCompatActivity implements View.OnClickListener{
         progressDialog = new ProgressDialog(this);
         firebaseAuth = FirebaseAuth.getInstance();
 
-        databaseReference = FirebaseDatabase.getInstance().getReference("Details");
+        //databaseReference = FirebaseDatabase.getInstance().getReference("Details");
 
         buttonRegister = (Button) findViewById(R.id.buttonRegister);
 
@@ -103,15 +104,33 @@ public class Register extends AppCompatActivity implements View.OnClickListener{
                 progressDialog.dismiss();
                 if(task.isSuccessful()){
                     Toast.makeText(Register.this,"Registered Successfully", Toast.LENGTH_SHORT).show();
-                    String id = databaseReference.push().getKey();
+                    //String id = databaseReference.push().getKey();
                     String password = editTextPassword.getText().toString().trim();
                     String name = editTextName.getText().toString().trim();
                     String contact = editTextContact.getText().toString().trim();
                     String email = editTextEmail.getText().toString().trim();
+
+
+
+
+
+                    //get firebase user
+                    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
+                    //get reference
+                    DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Details");
+
                     UserData userData = new UserData(name,contact,email,password);
-                    databaseReference.child(id).setValue(userData);
+                    //build child
+                    ref.child(user.getUid()).setValue(userData);
+
+
+
+
+
+                    //databaseReference.child(id).setValue(userData);
                     finish();
-                    startActivity(new Intent(getApplicationContext(),RegisterChild.class));
+                    startActivity(new Intent(getApplicationContext(),Profile.class));
                 }
                 else{
                     Toast.makeText(Register.this,"Try Again...", Toast.LENGTH_SHORT).show();

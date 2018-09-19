@@ -20,7 +20,8 @@
         </activity>
         <activity android:name=".Register" />
         <activity android:name=".Home" />
-        <activity android:name=".RegisterChild"></activity>
+        <activity android:name=".RegisterChild" />
+        <activity android:name=".Profile"></activity>
     </application>
 
 </manifest>
