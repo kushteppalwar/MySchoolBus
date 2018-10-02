@@ -32,7 +32,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+//        finish();
+//        startActivity(new Intent(getApplicationContext(),HomeScreen.class));
         progressDialog = new ProgressDialog(this);
         firebaseAuth = FirebaseAuth.getInstance();
 
@@ -78,7 +79,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 if(task.isSuccessful()){
                     Toast.makeText(MainActivity.this,"Logged In", Toast.LENGTH_SHORT).show();
                     finish();
-                    startActivity(new Intent(getApplicationContext(),Profile.class));
+                    startActivity(new Intent(getApplicationContext(),Tracker.class));
                 }
                 else{
                     Toast.makeText(MainActivity.this,"Invalid Credentials!", Toast.LENGTH_SHORT).show();
@@ -92,10 +93,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
-        if(v == buttonLogin){
-            //yaha login kar ke andar jayega
-            loginUser();
-        }
+        //yaha login kar ke andar jayega
+        if(v == buttonLogin) loginUser();
 
         if(v == textViewSignup){
             //signupUser();

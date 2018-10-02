@@ -31,8 +31,6 @@ public class RegisterChild extends AppCompatActivity implements View.OnClickList
 
     private ProgressDialog progressDialog;
 
-    private FirebaseAuth firebaseAuth ;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,10 +38,10 @@ public class RegisterChild extends AppCompatActivity implements View.OnClickList
         setContentView(R.layout.activity_register_child);
 
         progressDialog = new ProgressDialog(this);
-        firebaseAuth = FirebaseAuth.getInstance();
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        //FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+        //FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
-        databaseReference = FirebaseDatabase.getInstance().getReference("Details").child(user.getUid());
+        //databaseReference = FirebaseDatabase.getInstance().getReference("Details").child(user.getUid()).child("children");
 
         editTextRegChildId = (EditText) findViewById(R.id.editTextRegChildId);
         editTextRegChildName = (EditText) findViewById(R.id.editTextRegChildName);
@@ -73,13 +71,17 @@ public class RegisterChild extends AppCompatActivity implements View.OnClickList
         progressDialog.setMessage("Registering ... ");
         progressDialog.show();
 
-        String iid = databaseReference.push().getKey();
+//        DatabaseReference newStd = databaseReference.push();
+//        StudentData studentData = new StudentData(name,id);
+//        newStd.setValue(studentData);
+        databaseReference = FirebaseDatabase.getInstance().getReference();
         StudentData studentData = new StudentData(name,id);
-        databaseReference.child(iid).setValue(studentData);
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        databaseReference.child("Details").child(user.getUid()).child("Children").setValue(studentData);
 
         Toast.makeText(RegisterChild.this,"Registered Successfully", Toast.LENGTH_SHORT).show();
         finish();
-        startActivity(new Intent(getApplicationContext(),Profile.class));
+        startActivity(new Intent(getApplicationContext(),StudProfile.class));
 
         /*firebaseAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
             @Override

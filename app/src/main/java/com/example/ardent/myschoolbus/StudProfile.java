@@ -18,34 +18,29 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-public class Profile extends AppCompatActivity implements View.OnClickListener {
+public class StudProfile extends AppCompatActivity implements View.OnClickListener {
 
-    private TextView textViewProfileName;
-    private TextView textViewProfileEmail;
-    private TextView textViewProfileContact;
-    private Button buttonProfileAddStudent;
+    private TextView textViewStudProfileName;
+    private TextView textViewStudProfileId;
 
-
-    private FirebaseAuth firebaseAuth;
-    private FirebaseDatabase firebaseDatabase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_profile);
+        setContentView(R.layout.activity_stud_profile);
 
-        textViewProfileContact = (TextView) findViewById(R.id.textviewProfileContact);
-        textViewProfileEmail = (TextView) findViewById(R.id.textviewProfileEmail);
-        textViewProfileName = (TextView) findViewById(R.id.textviewProfileName);
-        buttonProfileAddStudent = (Button) findViewById(R.id.buttonProfileAddStudent);
 
-        firebaseAuth = FirebaseAuth.getInstance();
-        firebaseDatabase = FirebaseDatabase.getInstance();
+        textViewStudProfileName = (TextView) findViewById(R.id.textviewStudProfileId);
+        textViewStudProfileId = (TextView) findViewById(R.id.textviewStudProfileName);
+
+
+        FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+        FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
 
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
-        DatabaseReference databaseReference = firebaseDatabase.getReference().child("Details").child(user.getUid()).child("Parent");
+        DatabaseReference databaseReference = firebaseDatabase.getReference().child("Details").child(user.getUid()).child("Children");
         /*
         //get firebase user
                     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
@@ -85,12 +80,12 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 // Get Post object and use the values to update the UI
-                UserData userData = dataSnapshot.getValue(UserData.class);
+                StudentData studentData = dataSnapshot.getValue(StudentData.class);
                 // [START_EXCLUDE]
-                Log.w("PostDetailActivity",  userData.name);
-                textViewProfileName.setText(userData.name);
-                textViewProfileEmail.setText(userData.email);
-                textViewProfileContact.setText(userData.contact);
+                Log.w("PostDetailActivity",  studentData.name);
+                textViewStudProfileName.setText(studentData.name);
+                textViewStudProfileId.setText(studentData.id);
+                //textViewProfileContact.setText(userData.contact);
                 // [END_EXCLUDE]
             }
 
@@ -99,22 +94,22 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
                 // Getting Post failed, log a message
                 //Log.w("PostDetailActivity", "loadPost:onCancelled", databaseError.toException());
                 // [START_EXCLUDE]
-                Toast.makeText(Profile.this, "Failed to load post.",
+                Toast.makeText(StudProfile.this, "Failed to load post.",
                         Toast.LENGTH_SHORT).show();
                 // [END_EXCLUDE]
             }
         };
         databaseReference.addValueEventListener(profileListener);
 
-    buttonProfileAddStudent.setOnClickListener( this);
+        //buttonProfileAddStudent.setOnClickListener( this);
 
     }
 
     @Override
     public void onClick(View v) {
-        if(v==buttonProfileAddStudent){
-            finish();
-            startActivity(new Intent(getApplicationContext(),RegisterChild.class));
-        }
+
     }
+
+    //@Override
+
 }

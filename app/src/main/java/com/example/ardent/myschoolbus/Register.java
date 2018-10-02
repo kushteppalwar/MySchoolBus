@@ -146,7 +146,7 @@ public class Register extends AppCompatActivity implements View.OnClickListener{
                     databaseReference = FirebaseDatabase.getInstance().getReference();
                     UserData userData = new UserData(name, contact, email, password);
                     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                    databaseReference.child("Details").child(user.getUid()).setValue(userData);
+                    databaseReference.child("Details").child(user.getUid()).child("Parent").setValue(userData);
                     finish();
                     startActivity(new Intent(getApplicationContext(),RegisterChild.class));
 

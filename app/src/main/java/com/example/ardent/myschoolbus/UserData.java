@@ -2,12 +2,15 @@ package com.example.ardent.myschoolbus;
 
 //import java.nio.file.attribute.UserDefinedFileAttributeView;
 
+import java.util.HashMap;
+
 public class UserData {
 
     public String name;
     public String contact;
     public String email;
     public String password;
+    HashMap<Integer,StudentData> children;
 
     public UserData(){
         // Default constructor required for calls to DataSnapshot.getValue(User.class)
@@ -21,6 +24,7 @@ public class UserData {
         this.email = email;
         this.password = password;
     }
+    public HashMap<Integer, StudentData> getChildren(){ return children;}
 
     public String getName() {
         return name;
