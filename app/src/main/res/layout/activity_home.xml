@@ -1,26 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Home">
+    tools:context=".Home"
+    android:layout_gravity="center">
 
     <LinearLayout
         android:layout_centerHorizontal ="true"
         android:layout_centerVertical ="true"
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_gravity="center">
 
-        <TextView
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textAlignment="center"
-            android:id="@+id/textviewHomeEmail"
+        <Button
+
+            android:layout_margin="15dp"
+            android:id="@+id/buttonHomeProfile"
+            android:text="Profile"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
-
-
+        <Button
+            android:layout_margin="15dp"
+            android:id="@+id/buttonHomeStudentProfile"
+            android:text="Student Profile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <Button
+            android:layout_margin="15dp"
+            android:id="@+id/buttonHomeTracking"
+            android:text="Track"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
         <Button
             android:layout_margin="15dp"
             android:id="@+id/buttonHomeLogout"
@@ -29,4 +42,4 @@
             android:layout_height="wrap_content" />
 
     </LinearLayout>
-</android.support.constraint.ConstraintLayout>
+</LinearLayout>

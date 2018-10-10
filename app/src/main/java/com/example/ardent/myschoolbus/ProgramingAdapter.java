@@ -15,22 +15,16 @@ import java.util.*;
 
 public class ProgramingAdapter extends RecyclerView.Adapter<ProgramingAdapter.ProgramingViewHolder>{
 
-    //List<StudentData> studentDataList;
-    ArrayList<StudentData>studentDataList;
-//    public ProgramingAdapter(List<StudentData> studentDataList) {
-//        this.studentDataList =  new ArrayList<StudentData>(studentDataList);
-//    }
 
-    private StudentData studentData;
-    ProgramingAdapter(StudentData studentData) {
-        this.studentData = studentData;
+
+    List<StudentData> studentDataList;
+
+
+    public ProgramingAdapter(ArrayList<StudentData>studentDataList) {
+        this.studentDataList=new ArrayList<>();
+        this.studentDataList = studentDataList;
     }
 
-
-    //studentDataList=new ArrayList<>();
-//    public ProgramingAdapter (List<StudentData> data){
-//        this.data.name = studentDataList;
-//    }
 
     @NonNull
     @Override
@@ -42,14 +36,14 @@ public class ProgramingAdapter extends RecyclerView.Adapter<ProgramingAdapter.Pr
 
     @Override
     public void onBindViewHolder(@NonNull ProgramingViewHolder programingViewHolder, int i) {
-        String name = studentData.getName();
+        String name = studentDataList.get(i).name;
         programingViewHolder.textView.setText(name);
     }
 
     @Override
     public int getItemCount() {
-        //return studentDataList.size();
-        return  1;
+        return studentDataList.size();
+        // return  1;
     }
 
     public  class ProgramingViewHolder extends RecyclerView.ViewHolder {

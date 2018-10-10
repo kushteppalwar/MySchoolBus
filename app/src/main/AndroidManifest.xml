@@ -46,14 +46,9 @@
             android:name=".Tracker"
             android:label="@string/title_activity_tracker" />
         <activity
-            android:name=".CardDemo"
-            android:label="@string/title_activity_card_demo" />
-        <activity android:name=".RecyclerAdapter" />
-        <activity android:name=".HomeScreen" />
-        <activity android:name=".StudProfile" />
-        <activity
-            android:name=".nav"
-            android:label="@string/title_activity_nav"></activity>
+            android:name=".Navigate"
+            android:label="@string/title_activity_navigate" />
+        <activity android:name=".StudentProfile"></activity>
     </application>
 
 </manifest>

@@ -26,59 +26,24 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
     private Button buttonProfileAddStudent;
 
 
-    private FirebaseAuth firebaseAuth;
-    private FirebaseDatabase firebaseDatabase;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
-
-        textViewProfileContact = (TextView) findViewById(R.id.textviewProfileContact);
-        textViewProfileEmail = (TextView) findViewById(R.id.textviewProfileEmail);
         textViewProfileName = (TextView) findViewById(R.id.textviewProfileName);
-        buttonProfileAddStudent = (Button) findViewById(R.id.buttonProfileAddStudent);
-
-        firebaseAuth = FirebaseAuth.getInstance();
-        firebaseDatabase = FirebaseDatabase.getInstance();
+        textViewProfileEmail = (TextView) findViewById(R.id.textviewProfileEmail);
+        textViewProfileContact = (TextView) findViewById(R.id.textviewProfileContact);
+        buttonProfileAddStudent = (Button) findViewById(R.id.buttonProfileHome);
+        //FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+        FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
 
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
-        DatabaseReference databaseReference = firebaseDatabase.getReference().child("Details").child(user.getUid()).child("Parent");
-        /*
-        //get firebase user
-                    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-
-                    //get reference
-                    DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Details");
-
-                    UserData userData = new UserData(name,contact,email,password);
-                    //build child
-                    ref.child(user.getUid()).setValue(userData);
-        */
-
-        //UserData userData = new UserData(name,contact,email,password);
-
-        /*databaseReference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
-                UserData userData = dataSnapshot.getValue(UserData.class);
-                textViewProfileName.setText(userData.getName());
-                //textViewProfileName.setText("nilu");
-                //Log.d("MESSAGE",userData.getName());
-                    //Log.d("MESSAGE","fdsgtsdf");
-                textViewProfileContact.setText(userData.getContact());
-                textViewProfileEmail.setText(userData.getEmail());
-                Toast.makeText(Profile.this,"aa gaya data...", Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-                Toast.makeText(Profile.this,databaseError.getCode(),Toast.LENGTH_SHORT).show();
-            }
-        });*/
+        DatabaseReference databaseReference = null;
+        if (user != null) {
+            databaseReference = firebaseDatabase.getReference().child("Details").child(user.getUid()).child("Parent");
+        }
 
 
         ValueEventListener profileListener = new ValueEventListener() {
@@ -87,15 +52,15 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
                 // Get Post object and use the values to update the UI
                 UserData userData = dataSnapshot.getValue(UserData.class);
                 // [START_EXCLUDE]
-                Log.w("PostDetailActivity",  userData.name);
-                textViewProfileName.setText(userData.name);
-                textViewProfileEmail.setText(userData.email);
-                textViewProfileContact.setText(userData.contact);
+                Log.w("PostDetailActivity", userData != null ? userData.name : null);
+                textViewProfileName.setText(userData != null ? userData.name : null);
+                textViewProfileEmail.setText(userData != null ? userData.email : null);
+                textViewProfileContact.setText(userData != null ? userData.contact : null);
                 // [END_EXCLUDE]
             }
 
             @Override
-            public void onCancelled(DatabaseError databaseError) {
+            public void onCancelled(@NonNull DatabaseError databaseError) {
                 // Getting Post failed, log a message
                 //Log.w("PostDetailActivity", "loadPost:onCancelled", databaseError.toException());
                 // [START_EXCLUDE]
@@ -104,9 +69,13 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
                 // [END_EXCLUDE]
             }
         };
-        databaseReference.addValueEventListener(profileListener);
 
-    buttonProfileAddStudent.setOnClickListener( this);
+
+        if (databaseReference != null) {
+            databaseReference.addValueEventListener(profileListener);
+        }
+
+        buttonProfileAddStudent.setOnClickListener( this);
 
     }
 
@@ -114,7 +83,7 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
     public void onClick(View v) {
         if(v==buttonProfileAddStudent){
             finish();
-            startActivity(new Intent(getApplicationContext(),RegisterChild.class));
+            startActivity(new Intent(getApplicationContext(),Home.class));
         }
     }
 }

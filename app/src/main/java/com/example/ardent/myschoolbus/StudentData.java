@@ -10,7 +10,7 @@ public class StudentData {
     public StudentData() {
     }
 
-    public StudentData(String name, String id) {
+    StudentData(String name, String id) {
         this.name = name;
         this.id = id;
     }

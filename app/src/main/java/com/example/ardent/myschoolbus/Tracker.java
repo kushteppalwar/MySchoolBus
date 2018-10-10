@@ -72,7 +72,7 @@ public class Tracker extends FragmentActivity implements View.OnClickListener, O
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-        marker = mMap.addMarker(mo);
+        //marker = mMap.addMarker(mo);
     }
 
 //    @Override
@@ -187,10 +187,12 @@ public class Tracker extends FragmentActivity implements View.OnClickListener, O
 //                    Log.d("VERMA", "onDataChange: " );
                     Toast.makeText(Tracker.this, "hi", Toast.LENGTH_SHORT).show();
 //                    marker = mMap.addMarker(mo);
-//                    marker.setPosition(latLng);
+                    marker.setPosition(latLng);
                         Marker melbourne = mMap.addMarker(new MarkerOptions()
                                 .position(latLng)
                                 .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED)));
+//                    mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng,10));
+                    CameraUpdateFactory.zoomIn();
                 }
 
 

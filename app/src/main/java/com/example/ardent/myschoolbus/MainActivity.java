@@ -19,33 +19,35 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private Button buttonLogin;
-    private EditText editTextEmail;
-    private EditText editTextPassword;
-    private TextView textViewSignup;
 
     private ProgressDialog progressDialog;
 
     private FirebaseAuth firebaseAuth ;
-
+    private Button buttonLogin;
+    private EditText editTextEmail;
+    private EditText editTextPassword;
+    private TextView textViewSignup;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 //        finish();
-//        startActivity(new Intent(getApplicationContext(),HomeScreen.class));
-        progressDialog = new ProgressDialog(this);
-        firebaseAuth = FirebaseAuth.getInstance();
-
-        if(firebaseAuth.getCurrentUser()!=null){
-            // profil act start hogi
-            finish();
-            startActivity(new Intent(getApplicationContext(),Home.class));
-        }
+//        startActivity(new Intent(getApplicationContext(),temp.class));
         buttonLogin = (Button) findViewById(R.id.buttonLogin);
         editTextEmail = (EditText) findViewById(R.id.editTextEmail);
         editTextPassword = (EditText) findViewById(R.id.editTextPassword);
         textViewSignup = (TextView) findViewById(R.id.textViewSignup);
+
+        progressDialog = new ProgressDialog(this);
+        firebaseAuth = FirebaseAuth.getInstance();
+
+//        if(firebaseAuth.getCurrentUser()!=null){
+//            // profil act start hogi
+//
+//            startActivity(new Intent(getApplicationContext(),Home.class));
+//            finish();
+//        }
 
         buttonLogin.setOnClickListener(this);
         textViewSignup.setOnClickListener(this);
@@ -68,8 +70,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             return;
         }
 
-        progressDialog.setMessage("Logging In ... ");
-        progressDialog.show();
+//        progressDialog.setMessage("Logging In ... ");
+//        progressDialog.show();
 
 
 
@@ -79,7 +81,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 if(task.isSuccessful()){
                     Toast.makeText(MainActivity.this,"Logged In", Toast.LENGTH_SHORT).show();
                     finish();
-                    startActivity(new Intent(getApplicationContext(),Tracker.class));
+                    startActivity(new Intent(getApplicationContext(),Home.class));
                 }
                 else{
                     Toast.makeText(MainActivity.this,"Invalid Credentials!", Toast.LENGTH_SHORT).show();

@@ -18,7 +18,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-public class nav extends Activity
+public class Navigate extends Activity
         implements NavigationDrawerFragment.NavigationDrawerCallbacks {
 
     /**
@@ -34,7 +34,7 @@ public class nav extends Activity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_nav);
+        setContentView(R.layout.activity_navigate);
 
         mNavigationDrawerFragment = (NavigationDrawerFragment)
                 getFragmentManager().findFragmentById(R.id.navigation_drawer);
@@ -104,14 +104,14 @@ public class nav extends Activity
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_nav, container, false);
+            View rootView = inflater.inflate(R.layout.fragment_navigate, container, false);
             return rootView;
         }
 
         @Override
         public void onAttach(Activity activity) {
             super.onAttach(activity);
-            ((nav) activity).onSectionAttached(
+            ((Navigate) activity).onSectionAttached(
                     getArguments().getInt(ARG_SECTION_NUMBER));
         }
     }
